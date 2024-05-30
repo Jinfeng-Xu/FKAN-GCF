@@ -23,7 +23,7 @@ Rethinking feature transformation component in GCNs in recommendation field!
 ```math
 \mathbf{e}_u^{(l+1)} =\sum_{i \in \mathcal{N}_u} \frac{\mathbf{e}_i^{(l)}}{\sqrt{|\mathcal{N}_u||\mathcal{N}_i|}}, \quad \mathbf{e}_i^{(l+1)} =\sum_{u \in \mathcal{N}_i} \frac{\mathbf{e}_u^{(l)}}{\sqrt{|\mathcal{N}_u||\mathcal{N}_i|}}.
 ```
-We point out that $\mathbf{W}_1$ is unnecessary, but interaction part $\mathbf{W}_2(\mathbf{e}_i^{(l)} \odot \mathbf{e}_u^{(l)}$ is valuable for recommendation task, but it's hard to train on sparsity dataset.
+We point out that $\mathbf{W}_1$ is unnecessary, but interaction part $\mathbf{W}_2(\mathbf{e}_i^{(l)} \odot \mathbf{e}_u^{(l)})$ is valuable for recommendation task, but it's hard to train on sparsity dataset.
 
 Thanks to the original implementations [KAN](https://github.com/KindXiaoming/pykan) and [FourierKAN](https://github.com/GistNoesis/FourierKAN).
 
