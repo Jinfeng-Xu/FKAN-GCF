@@ -1,0 +1,47 @@
+# general
+gpu_id: 0
+use_gpu: True
+seed: [999]
+data_path: 'data/'
+preprocessed_data: 'preprocessed_data/'
+preprocessed_data_splitting: 'x_label'
+load_preprocessed: True
+checkpoint_dir: 'saved'
+save_recommended_topk: True
+recommend_topk: 'recommend_topk/'
+
+embedding_size: 64
+
+# training settings
+epochs: 1000
+train_batch_size: 2048
+learner: adam
+learning_rate: 0.001
+training_neg_sample_num: 1
+use_neg_sampling: True
+use_full_sampling: False
+eval_step: 1
+stopping_step: 30
+
+min_user_inter_num: 1
+min_item_inter_num: 1
+max_user_inter_num: ~
+max_item_inter_num: ~
+USER_ID_FIELD: user_id:token
+ITEM_ID_FIELD: item_id:token
+TIME_FIELD: timestamp:float
+load_cols: [user_id:token, item_id:token, timestamp:float]
+field_separator: "\t"
+
+NEG_PREFIX: neg__
+
+# evaluation settings
+split_ratio: [0.7,0.1,0.2]
+metrics: ["Recall", "NDCG", "MAP", "Precision"]
+topk: [5, 10, 20, 50]
+valid_metric: Recall@20
+eval_batch_size: 4096
+
+# iteration parameters
+hyper_parameters: ["seed"]
+

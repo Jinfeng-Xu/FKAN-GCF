@@ -1,0 +1,15 @@
+# Common Features
+USER_ID_FIELD: user_id:token
+ITEM_ID_FIELD: course_id:token
+#RATING_FIELD: rating
+TIME_FIELD: timestamp:float
+# Selectively Loading
+load_cols: [user_id:token, course_id:token, timestamp:float]
+
+# Filtering
+max_user_inter_num: ~
+min_user_inter_num: ~
+max_item_inter_num: ~
+min_item_inter_num: ~
+
+field_separator: "\t"

@@ -1,0 +1,14 @@
+# Common Features
+USER_ID_FIELD: user
+ITEM_ID_FIELD: item
+#RATING_FIELD: rating
+TIME_FIELD: timestamp
+# Selectively Loading
+load_cols: [item, user, timestamp]
+
+# Filtering
+max_user_inter_num: ~
+min_user_inter_num: 5
+max_item_inter_num: ~
+min_item_inter_num: 5
+field_separator: ","

@@ -1,0 +1,9 @@
+embedding_size: 64
+hidden_size_list: [64,64,64]
+reg_weight: [1]
+n_layer: [2, 3]
+grid_size: [1, 2, 4, 8]
+dropout_node: [0.0, 0.1, 0.2, 0.3]
+dropout_message: [0.0, 0.1, 0.2, 0.3]
+hyper_parameters: ["reg_weight", "grid_size", "dropout_node", "dropout_message", "n_layer"]
+
