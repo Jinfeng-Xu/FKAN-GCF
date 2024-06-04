@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This is the Pytorch implementation for our FourierKAN-GCF [paper]():
+This is the Pytorch implementation for our FourierKAN-GCF [paper](https://arxiv.org/abs/2406.01034):
 
 >FourierKAN-GCF: Fourier Kolmogorov-Arnold Network - An Effective and Efficient Feature Transformation for Graph Collaborative Filtering
 
@@ -60,3 +60,13 @@ Two public datasets: MOOC, Games
 Thanks for simplifies [Recbole](https://github.com/RUCAIBox/RecBole) repo. [ImRec](https://github.com/enoche/ImRec).
 
 ## Citing if this repo. useful:
+
+```
+@article{xu2024fourierkangcf,
+  title={FourierKAN-GCF: Fourier Kolmogorov-Arnold Network -- An Effective and Efficient Feature Transformation for Graph Collaborative Filtering},
+  author={Xu, Jinfeng and Chen, Zheyu and Li, Jinze and Yang, Shuo and Wang, Hewei and Hu, Xiping and Ngai, Edith C-H},
+  journal={arXiv preprint arXiv:2406.01034},
+  year={2024}
+}
+```
+
