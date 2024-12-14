@@ -14,6 +14,7 @@ import torch.nn as nn
 import torch.nn.functional as fn
 from torch.nn.init import normal_
 from enum import Enum
+import pywt
 
 
 class FeatureType(Enum):
@@ -803,6 +804,27 @@ class ContextSeqEmbLayer(ContextSeqEmbAbstractLayer):
         self.get_fields_name_dim()
         self.get_embedding()
 
+        self.polynomial_features = PolynomialFeatures(degree=2)
+        self.wavelet_transform = WaveletTransform(wavelet='db1')
+        self.autoencoder = Autoencoder(input_dim=embedding_size, hidden_dim=embedding_size // 2)
+
+    def forward(self, user_idx, item_idx):
+        sparse_embedding, dense_embedding = self.embed_input_fields(user_idx, item_idx)
+
+        # Apply polynomial features
+        sparse_embedding['user'] = self.polynomial_features(sparse_embedding['user'])
+        sparse_embedding['item'] = self.polynomial_features(sparse_embedding['item'])
+
+        # Apply wavelet transform
+        sparse_embedding['user'] = self.wavelet_transform(sparse_embedding['user'])
+        sparse_embedding['item'] = self.wavelet_transform(sparse_embedding['item'])
+
+        # Apply autoencoder
+        sparse_embedding['user'] = self.autoencoder(sparse_embedding['user'])
+        sparse_embedding['item'] = self.autoencoder(sparse_embedding['item'])
+
+        return sparse_embedding, dense_embedding
+
 
 class FeatureSeqEmbLayer(ContextSeqEmbAbstractLayer):
     """For feature-rich sequential recommenders, return item features embedding matrices according to
@@ -1084,3 +1106,35 @@ class SparseDropout(nn.Module):
         rc = x._indices()[:, mask]
         val = x._values()[mask] * (1.0 / self.kprob)
         return torch.sparse.FloatTensor(rc, val, x.shape)
+
+
+class PolynomialFeatures(nn.Module):
+    def __init__(self, degree=2):
+        super(PolynomialFeatures, self).__init__()
+        self.degree = degree
+
+    def forward(self, x):
+        poly_features = [x ** i for i in range(1, self.degree + 1)]
+        return torch.cat(poly_features, dim=-1)
+
+
+class WaveletTransform(nn.Module):
+    def __init__(self, wavelet='db1'):
+        super(WaveletTransform, self).__init__()
+        self.wavelet = wavelet
+
+    def forward(self, x):
+        coeffs = pywt.wavedec(x.cpu().numpy(), self.wavelet, mode='symmetric')
+        return torch.tensor(np.concatenate(coeffs, axis=-1)).to(x.device)
+
+
+class Autoencoder(nn.Module):
+    def __init__(self, input_dim, hidden_dim):
+        super(Autoencoder, self).__init__()
+        self.encoder = nn.Linear(input_dim, hidden_dim)
+        self.decoder = nn.Linear(hidden_dim, input_dim)
+
+    def forward(self, x):
+        encoded = torch.relu(self.encoder(x))
+        decoded = torch.relu(self.decoder(encoded))
+        return decoded

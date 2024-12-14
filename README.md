@@ -57,7 +57,37 @@ Two public datasets: MOOC, Games
   cd ./src
   python main.py
   ```
-Thanks for simplifies [Recbole](https://github.com/RUCAIBox/RecBole) repo. [ImRec](https://github.com/enoche/ImRec).
+
+## Additional Feature Transformation Techniques
+
+We have incorporated additional feature transformation techniques such as polynomial features, wavelet transforms, and autoencoders. These techniques are implemented in `models/common/layers.py`.
+
+### Polynomial Features
+Polynomial features are used to create new features by raising existing features to a power. This can help capture non-linear relationships in the data.
+
+### Wavelet Transforms
+Wavelet transforms are used to decompose a signal into different frequency components. This can help capture both time and frequency information in the data.
+
+### Autoencoders
+Autoencoders are neural networks used to learn efficient representations of the data. They can be used for dimensionality reduction and feature extraction.
+
+## Configuration
+
+The configuration files for datasets and models are located in the `configs` directory. Here is an example configuration for using the new feature transformation techniques:
+
+```yaml
+embedding_size: 64
+hidden_size_list: [64,64,64]
+reg_weight: [1]
+n_layer: [2, 3]
+grid_size: [1, 2, 4, 8]
+dropout_node: [0.0, 0.1, 0.2, 0.3]
+dropout_message: [0.0, 0.1, 0.2, 0.3]
+polynomial_features: [True, False]
+wavelet_transform: [True, False]
+autoencoder: [True, False]
+hyper_parameters: ["reg_weight", "grid_size", "dropout_node", "dropout_message", "n_layer", "polynomial_features", "wavelet_transform", "autoencoder"]
+```
 
 ## Citing if this repo. useful:
 
