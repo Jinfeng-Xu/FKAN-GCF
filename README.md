@@ -6,7 +6,7 @@
 
 This is the Pytorch implementation for our FourierKAN-GCF [paper](https://arxiv.org/abs/2406.01034):
 
->FourierKAN-GCF: Fourier Kolmogorov-Arnold Network - An Effective and Efficient Feature Transformation for Graph Collaborative Filtering
+>Enhancing Graph Collaborative Filtering with FourierKAN Feature Transformation
 
 ## Discussion
 
