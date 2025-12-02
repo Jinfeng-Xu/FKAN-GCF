@@ -62,6 +62,14 @@ Thanks for simplifies [Recbole](https://github.com/RUCAIBox/RecBole) repo. [ImRe
 ## Citing if this repo. useful:
 
 ```
+@inproceedings{xu2025enhancing,
+  title={Enhancing Graph Collaborative Filtering with FourierKAN Feature Transformation},
+  author={Xu, Jinfeng and Chen, Zheyu and Li, Jinze and Yang, Shuo and Wang, Wei and Hu, Xiping and Ngai, Edith},
+  booktitle={Proceedings of the 34th ACM International Conference on Information and Knowledge Management},
+  pages={5376--5380},
+  year={2025}
+}
+
 @article{xu2024fourierkan,
   title={FourierKAN-GCF: Fourier Kolmogorov-Arnold Network--An Effective and Efficient Feature Transformation for Graph Collaborative Filtering},
   author={Xu, Jinfeng and Chen, Zheyu and Li, Jinze and Yang, Shuo and Wang, Wei and Hu, Xiping and Ngai, Edith C-H},
